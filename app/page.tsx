@@ -2,8 +2,8 @@ import type { ReactNode } from "react";
 import Image from "next/image";
 import { ArrowUpRight, CodeXml } from "lucide-react";
 import { ContactForm } from "@/components/home/contact-form";
-import { MobileMenu } from "@/components/home/mobile-menu";
 import { RevealRoot } from "@/components/home/reveal-root";
+import { SiteMenu } from "@/components/home/site-menu";
 import { contact, contactEmail, navigation } from "@/lib/site";
 
 function ProjectButton() {
@@ -32,7 +32,7 @@ export default function Home() {
       <a href="#main" className="skip-link">Skip to content</a>
       <header className="site-header">
         <nav className="desktop-nav" aria-label="Main navigation">{navigation.map(([label, id]) => <a key={id} href={`#${id}`}>{label}</a>)}</nav>
-        <MobileMenu />
+        <SiteMenu />
         <a className="header-logo" href="#main" aria-label="Two Minds home"><Image src="/tm-logo.svg" alt="Two Minds" width={1076} height={190} priority /></a>
       </header>
       <main id="main">
