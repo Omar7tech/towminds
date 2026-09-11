@@ -6,6 +6,7 @@ import heroPhoto from "@/public/design/hero-photo.webp";
 import laptopPhoto from "@/public/design/laptop-photo.webp";
 import dashboardShot from "@/public/design/dashboard.webp";
 import { ContactForm } from "@/components/home/contact-form";
+import { FooterLogo } from "@/components/home/footer-logo";
 import { RevealRoot } from "@/components/home/reveal-root";
 import { SiteMenu } from "@/components/home/site-menu";
 import { contact, contactEmail, navigation } from "@/lib/site";
@@ -183,8 +184,8 @@ export default function Home() {
             {["Web Development", "Cyber Security", "CRM Systems"].map(label => <a className={footerLink} key={label} href={`${contact}?subject=${encodeURIComponent(label)}`}>{label}</a>)}
           </div>
         </div>
-        {/* No scaleY: the logo keeps its own proportions. */}
-        <Image className="mt-[calc(8*var(--u))] block h-auto w-full brightness-0 max-[900px]:mt-12" src="/tm-logo.svg" alt="Two Minds" width={1076} height={190} />
+        {/* Inline SVG (not <Image>) so the wordmark can draw itself in. No scaleY: true proportions. */}
+        <FooterLogo className="mt-[calc(8*var(--u))] block h-auto w-full brightness-0 max-[900px]:mt-12" />
       </footer>
     </RevealRoot>
   );
