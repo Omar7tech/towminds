@@ -58,10 +58,15 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid #fff;
 .operations{grid-column:span 7}.growth{grid-column:span 7}.experience{grid-column:span 5}
 .card-art{position:absolute;width:100%;height:100%;inset:0;stroke:#98a8a9;stroke-width:2;opacity:.15;transition:transform .8s}
 .signal .card-art{stroke:#fff;opacity:.18}.industry-card:hover .card-art{transform:scale(1.07) rotate(4deg)}
-.card-tag{position:absolute;right:2.3%;top:8%;font-size:calc(1.3125*var(--u));line-height:calc(2.7*var(--u));padding:0 calc(1.15*var(--u));border-radius:40px;background:#ffffff35;font-weight:600;white-space:nowrap}
+/* Tags and the chart share one gutter (2u) so they are inset identically on every card; the
+   percentage inset they used before worked out to 17px on narrow cards and 24px on wide ones.
+   Titles keep their designed per-card insets: the growth line needs the extra room. */
+.card-tag{position:absolute;right:calc(2*var(--u));top:8%;font-size:calc(1.3125*var(--u));line-height:calc(2.7*var(--u));padding:0 calc(1.15*var(--u));border-radius:40px;background:#ffffff35;font-weight:600;white-space:nowrap}
 .industry-card h3{position:absolute;left:4.7%;bottom:9.3%;margin:0;font-size:calc(2.13*var(--u));font-weight:500;line-height:1.12;letter-spacing:calc(-.035*var(--u))}
-.signal h3{left:6.6%}.growth h3{left:2.6%;bottom:8%;font-size:calc(2.13*var(--u))}.growth h3 strong{display:block;font-size:calc(5.6*var(--u));font-weight:600;line-height:.95}
-.growth-chart{position:absolute;right:4%;bottom:10%;width:41%;height:45%;color:white}
+.signal h3{left:6.6%}
+/* Stops short of the chart, wrapping instead of running under it on narrower screens. */
+.growth h3{left:2.6%;max-width:calc(56.4% - 1*var(--u));bottom:8%;font-size:calc(2.13*var(--u))}.growth h3 strong{display:block;font-size:calc(5.6*var(--u));font-weight:600;line-height:.95}
+.growth-chart{position:absolute;right:calc(2*var(--u));bottom:10%;width:41%;height:45%;color:white}
 .company{padding-top:calc(13.85*var(--u))}
 .manifesto{margin:0 0 0 10.95%;font-family:var(--font-neue-machina),sans-serif;font-size:calc(3.973*var(--u));font-weight:300;line-height:1.035;letter-spacing:calc(-.06*var(--u))}
 .manifesto p{margin:0 0 calc(3.98*var(--u))}
