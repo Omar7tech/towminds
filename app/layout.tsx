@@ -18,7 +18,7 @@ const description =
   "Two Minds designs and engineers secure, scalable business systems: operations and CRM platforms, brand experiences, and cyber security for teams that need software built around how they actually work.";
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://wearetwominds.com"),
+  metadataBase: new URL("https://twomindsengine.com"),
   title: { default: "Two Minds — Design & Engineer Your Business", template: "%s · Two Minds" },
   description,
   openGraph: { type: "website", url: "/", siteName: "Two Minds", title: "Two Minds — Design & Engineer Your Business", description },
