@@ -21,7 +21,7 @@ function unlockScroll() {
   document.documentElement.style.paddingRight = "";
 }
 
-/** Full-screen mobile menu. Desktop uses the inline pill nav, so the toggle is hidden above 700px. */
+/** Full-screen mobile menu. Desktop uses the inline pill nav, so the toggle is hidden above 900px. */
 export function SiteMenu() {
   const dialog = useRef<HTMLDialogElement>(null);
   const toggle = useRef<HTMLButtonElement>(null);
@@ -55,7 +55,7 @@ export function SiteMenu() {
   // Rotating or resizing past the breakpoint hides the menu, so drop it instantly and release the scroll lock.
   useEffect(() => {
     if (!open) return;
-    const desktop = window.matchMedia("(min-width: 701px)");
+    const desktop = window.matchMedia("(min-width: 901px)");
     const onChange = () => {
       if (!desktop.matches) return;
       timeline.current?.pause(0);
