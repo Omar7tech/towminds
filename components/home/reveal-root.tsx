@@ -30,5 +30,6 @@ export function RevealRoot({ children }: { children: ReactNode }) {
     });
     return () => media.revert();
   }, { scope: root });
-  return <div ref={root} className="homepage">{children}</div>;
+  // The frame: content caps at the 1920 artboard (120rem = 100u) and centres on wider screens.
+  return <div ref={root} className="relative isolate mx-auto w-full max-w-[120rem] bg-[#a2b4b6]">{children}</div>;
 }

@@ -23,9 +23,9 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
       lang="en"
-      className={`${inter.variable} ${neueMachina.variable} h-full antialiased`}
+      className={`${inter.variable} ${neueMachina.variable} h-full scroll-smooth scroll-pt-[30px] overflow-x-clip antialiased motion-reduce:scroll-auto`}
     >
-      <body className="min-h-full flex flex-col">{children}</body>
+      <body className="flex min-h-full flex-col bg-[#a2b4b6] font-sans text-white">{children}</body>
     </html>
   );
 }
