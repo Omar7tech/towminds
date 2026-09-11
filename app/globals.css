@@ -30,8 +30,7 @@ button,a,input{-webkit-tap-highlight-color:transparent}
 a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid #fff;outline-offset:5px}
 .homepage{--u:min(calc(.7vw + .36rem),1.1vw,1.2rem);position:relative;isolation:isolate;width:100%;max-width:120rem;margin-inline:auto;background:#a2b4b6}
 /* Background layers below use width:100vw centred on the frame, so gradients never cut off. */
-.ambient-background{position:absolute;top:0;bottom:0;left:50%;translate:-50% 0;width:100vw;z-index:-2;background:radial-gradient(ellipse 75% 11% at 100% 41%,#101112 0%,#252b2c 32%,transparent 100%),radial-gradient(ellipse 73% 17% at 0% 50%,#d8ebed 0%,transparent 100%),radial-gradient(ellipse 100% 20% at 100% 76%,#c6d9dc 0%,transparent 95%),radial-gradient(ellipse 90% 10% at 80% 26%,#b9ccd0 0%,transparent 100%),linear-gradient(120deg,#98a8a9,#c4d5d7)}
-.ambient-background svg{width:100%;height:100%;position:absolute;inset:0}
+.ambient-background{position:absolute;top:0;bottom:0;left:50%;translate:-50% 0;width:100vw;z-index:-2;background:radial-gradient(ellipse 78% 15% at 100% 41%,#101112 0%,#1a2021 30%,#252b2c 55%,#2b323300 100%),radial-gradient(ellipse 73% 17% at 0% 50%,#d8ebed 0%,#d8ebed00 100%),radial-gradient(ellipse 100% 20% at 100% 76%,#c6d9dc 0%,#c6d9dc00 95%),radial-gradient(ellipse 90% 10% at 80% 26%,#b9ccd0 0%,#b9ccd000 100%),linear-gradient(120deg,#98a8a9,#c4d5d7)}
 .site-header{position:absolute;top:calc(3.75*var(--u));left:5.4%;right:4.5%;display:flex;align-items:center;justify-content:space-between;z-index:3;color:var(--ink)}
 .desktop-nav{display:flex;align-items:center;justify-content:space-evenly;width:calc(36.7*var(--u));height:calc(5.09*var(--u));background:#ffffff60;border-radius:100px;backdrop-filter:blur(15px);font-family:var(--font-neue-machina),sans-serif;font-size:calc(1.43*var(--u));font-weight:300}
 .desktop-nav a{padding:calc(1*var(--u)) calc(.8*var(--u));transition:opacity .2s}.desktop-nav a:hover{opacity:.5}

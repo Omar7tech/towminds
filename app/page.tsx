@@ -32,7 +32,7 @@ function IndustryCard({ variant, href, children }: { variant: string; href: stri
 export default function Home() {
   return (
     <RevealRoot>
-      <div className="ambient-background" aria-hidden="true"><svg viewBox="0 0 1000 4000" preserveAspectRatio="none">{Array.from({ length: 50 }, (_, i) => <polygon key={i} points={`${(i * 137) % 1000},${i * 83} ${(i * 137 + 290) % 1200},${i * 83 + 310} ${(i * 137 + 510) % 1100},${i * 83 - 100}`} fill={i % 2 ? "#cfdee2" : "#98a8a9"} opacity={0.035 + (i % 3) * .014} />)}</svg></div>
+      <div className="ambient-background" aria-hidden="true" />
       <a href="#main" className="skip-link">Skip to content</a>
       <header className="site-header">
         <nav className="desktop-nav" aria-label="Main navigation">{navigation.map(([label, id]) => <a key={id} href={`#${id}`}>{label}</a>)}</nav>
