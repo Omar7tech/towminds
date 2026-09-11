@@ -56,6 +56,11 @@
 }
 
 @layer base {
+  /* Fallback for Safari < 16, which ignores overflow-x:clip. Without it the 100vw background
+     layers would scroll sideways there. Browsers that understand clip use the utility instead. */
+  html {
+    overflow-x: hidden;
+  }
   button,
   a,
   input {

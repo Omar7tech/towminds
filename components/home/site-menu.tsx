@@ -112,7 +112,7 @@ export function SiteMenu() {
       <dialog
         ref={dialog}
         id="site-menu"
-        className="fixed inset-0 m-0 h-dvh max-h-none w-full max-w-none overflow-hidden border-0 bg-transparent p-0 text-[#e3eef0] backdrop:bg-transparent min-[901px]:open:hidden"
+        className="fixed inset-0 m-0 h-dvh max-h-none w-full max-w-none overflow-hidden overscroll-contain border-0 bg-transparent p-0 text-[#e3eef0] backdrop:bg-transparent min-[901px]:open:hidden"
         aria-label="Site menu"
         onCancel={(event) => { event.preventDefault(); closeMenu(); }}
       >
