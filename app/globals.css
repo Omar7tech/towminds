@@ -135,10 +135,12 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid #fff;
    hidden) so it stays eligible for LCP. `translate` avoids clobbering the mobile button's transform. */
 @keyframes intro-rise{from{opacity:0;translate:0 var(--rise,35px)}}
 @keyframes intro-slide{from{translate:0 35px}}
+/* Movement only: the hero button is glass, and fading it in flashes an empty blur box. */
+@keyframes intro-lift{from{translate:0 var(--rise,18px)}}
 @media(prefers-reduced-motion:no-preference){
  .site-header{--rise:-20px;animation:intro-rise 1s cubic-bezier(.165,.84,.44,1) both}
  .hero-copy{animation:intro-rise 1s cubic-bezier(.165,.84,.44,1) .2s both}
  .hero-title span{animation:intro-slide 1s cubic-bezier(.165,.84,.44,1) .32s both}.hero-title span+span{animation-delay:.44s}
- .hero>.project-button{--rise:18px;animation:intro-rise 1s cubic-bezier(.165,.84,.44,1) .6s both}
+ .hero>.project-button{--rise:18px;animation:intro-lift 1s cubic-bezier(.165,.84,.44,1) .6s both}
 }
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{transition:none!important}}

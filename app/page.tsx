@@ -57,14 +57,14 @@ export default function Home() {
         </section>
         <section className="company" id="company" aria-label="About Two Minds">
           <div className="manifesto reveal"><p>WE ARE TWO MINDS BUT DRIVEN<br className="desktop-break" /> BY ONE VISION ONE GOAL TO MAKE<br className="desktop-break" /> YOUR BUSINESS RUN BETTER.</p><p>WE THINK BUSINESS FIRST.<br className="desktop-break" /> SYSTEMS NEXT. EXPERIENCE LAST.</p></div>
-          <div className="services-visual reveal" id="services">
+          <div className="services-visual reveal-move" id="services">
             <div className="laptop-photo"><Image src={laptopPhoto} alt="Hands at a laptop" fill sizes="(max-width: 900px) 90vw, 82vw" placeholder="blur" /><Image className="laptop-logo" src="/tm-logo.svg" alt="Two Minds" width={1076} height={190} /></div>
             <div className="service-links">{["Build Your Business System", "Build Your Brand Experience", "Secure Your Operations"].map(label => <a key={label} href={`${contact}?subject=${encodeURIComponent(label)}`}><ArrowUpRight aria-hidden="true" />{label}</a>)}</div>
           </div>
         </section>
         <section className="dashboard-section" id="dashboard" aria-labelledby="dashboard-title">
           <div className="dashboard-panel reveal"><h2 id="dashboard-title">Control Your<br />Business in One View</h2><p>A centralized dashboard that transforms your data into clear<br className="desktop-break" /> insights, real-time decisions, and scalable growth.</p><Image src={dashboardShot} alt="Task management dashboard with project progress, workflows, schedules, and completed tasks" sizes="(max-width: 900px) 85vw, 66vw" placeholder="blur" /></div>
-          <div className="dashboard-cta reveal"><ProjectButton /></div>
+          <div className="dashboard-cta reveal-move"><ProjectButton /></div>
         </section>
       </main>
       <footer id="contact" className="footer">
