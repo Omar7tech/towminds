@@ -1,6 +1,10 @@
 import type { ReactNode } from "react";
 import Image from "next/image";
 import { ArrowUpRight, CodeXml } from "lucide-react";
+// Static imports so Next can generate the blur placeholders shown while the photos load.
+import heroPhoto from "@/public/design/hero-photo.webp";
+import laptopPhoto from "@/public/design/laptop-photo.webp";
+import dashboardShot from "@/public/design/dashboard.webp";
 import { ContactForm } from "@/components/home/contact-form";
 import { RevealRoot } from "@/components/home/reveal-root";
 import { SiteMenu } from "@/components/home/site-menu";
@@ -37,7 +41,7 @@ export default function Home() {
       </header>
       <main id="main">
         <section className="hero" aria-labelledby="hero-title">
-          <div className="hero-photo" aria-hidden="true"><Image src="/design/hero-photo.webp" alt="" fill priority sizes="100vw" /></div>
+          <div className="hero-photo" aria-hidden="true"><Image src={heroPhoto} alt="" fill priority sizes="100vw" placeholder="blur" /></div>
           <p className="hero-copy">Secure, Scalable Systems<br />That Power Your Business.</p>
           <h1 className="hero-title" id="hero-title"><span>DESIGN &amp; ENGINEER</span><span>YOUR BUSINESS.</span></h1>
           <ProjectButton />
@@ -54,12 +58,12 @@ export default function Home() {
         <section className="company" id="company" aria-label="About Two Minds">
           <div className="manifesto reveal"><p>WE ARE TWO MINDS BUT DRIVEN<br className="desktop-break" /> BY ONE VISION ONE GOAL TO MAKE<br className="desktop-break" /> YOUR BUSINESS RUN BETTER.</p><p>WE THINK BUSINESS FIRST.<br className="desktop-break" /> SYSTEMS NEXT. EXPERIENCE LAST.</p></div>
           <div className="services-visual reveal" id="services">
-            <div className="laptop-photo"><Image src="/design/laptop-photo.webp" alt="Hands at a laptop" fill sizes="(max-width: 900px) 90vw, 82vw" /><Image className="laptop-logo" src="/tm-logo.svg" alt="Two Minds" width={1076} height={190} /></div>
+            <div className="laptop-photo"><Image src={laptopPhoto} alt="Hands at a laptop" fill sizes="(max-width: 900px) 90vw, 82vw" placeholder="blur" /><Image className="laptop-logo" src="/tm-logo.svg" alt="Two Minds" width={1076} height={190} /></div>
             <div className="service-links">{["Build Your Business System", "Build Your Brand Experience", "Secure Your Operations"].map(label => <a key={label} href={`${contact}?subject=${encodeURIComponent(label)}`}><ArrowUpRight aria-hidden="true" />{label}</a>)}</div>
           </div>
         </section>
         <section className="dashboard-section" id="dashboard" aria-labelledby="dashboard-title">
-          <div className="dashboard-panel reveal"><h2 id="dashboard-title">Control Your<br />Business in One View</h2><p>A centralized dashboard that transforms your data into clear<br className="desktop-break" /> insights, real-time decisions, and scalable growth.</p><Image src="/design/dashboard.webp" alt="Task management dashboard with project progress, workflows, schedules, and completed tasks" width={1262} height={760} sizes="(max-width: 900px) 85vw, 66vw" /></div>
+          <div className="dashboard-panel reveal"><h2 id="dashboard-title">Control Your<br />Business in One View</h2><p>A centralized dashboard that transforms your data into clear<br className="desktop-break" /> insights, real-time decisions, and scalable growth.</p><Image src={dashboardShot} alt="Task management dashboard with project progress, workflows, schedules, and completed tasks" sizes="(max-width: 900px) 85vw, 66vw" placeholder="blur" /></div>
           <div className="dashboard-cta reveal"><ProjectButton /></div>
         </section>
       </main>
