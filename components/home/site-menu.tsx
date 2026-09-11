@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useState, type MouseEvent } from "react";
+import { useEffect, useRef, useState, type MouseEvent } from "react";
 import Image from "next/image";
 import { ArrowUpRight, CodeXml } from "lucide-react";
 import gsap from "gsap";
@@ -8,12 +8,6 @@ import { useGSAP } from "@gsap/react";
 import { contact, contactEmail, navigation } from "@/lib/site";
 
 gsap.registerPlugin(useGSAP);
-
-const previews: Record<string, { src: string; caption: string }> = {
-  company: { src: "/design/hero-photo.webp", caption: "Two minds, one vision." },
-  industries: { src: "/design/dashboard.webp", caption: "Systems built for how you work." },
-  services: { src: "/design/laptop-photo.webp", caption: "Systems, brand & security." },
-};
 
 function lockScroll() {
   const html = document.documentElement;
@@ -27,15 +21,13 @@ function unlockScroll() {
   document.documentElement.style.paddingRight = "";
 }
 
+/** Full-screen mobile menu. Desktop uses the inline pill nav, so the toggle is hidden above 700px. */
 export function SiteMenu() {
   const dialog = useRef<HTMLDialogElement>(null);
   const toggle = useRef<HTMLButtonElement>(null);
   const closeButton = useRef<HTMLButtonElement>(null);
   const timeline = useRef<gsap.core.Timeline | null>(null);
   const [open, setOpen] = useState(false);
-  // Preview images mount on first intent so they don't cost anything on page load.
-  const [primed, setPrimed] = useState(false);
-  const [active, setActive] = useState(0);
 
   useGSAP(() => {
     const media = gsap.matchMedia();
@@ -53,7 +45,6 @@ export function SiteMenu() {
           .fromTo(".menu-label", { yPercent: 115 }, { yPercent: 0, duration: 1, stagger: 0.08, ease: "expo.out" }, "<-0.1")
           .fromTo(".menu-index, .menu-arrow", { autoAlpha: 0, y: 14 }, { autoAlpha: 1, y: 0, duration: 0.6, stagger: 0.05, ease: "power3.out" }, "<0.2")
           .fromTo(".menu-rule", { scaleX: 0 }, { scaleX: 1, duration: 1, stagger: 0.08, ease: "expo.out" }, "<-0.2")
-          .fromTo(".menu-preview", { clipPath: "inset(100% 0% 0% 0%)" }, { clipPath: "inset(0% 0% 0% 0%)", duration: 1.1, ease: "expo.out" }, "<")
           .fromTo(".menu-footer > *", { autoAlpha: 0, y: 20 }, { autoAlpha: 1, y: 0, duration: 0.7, stagger: 0.07, ease: "power3.out" }, "<0.15");
       }
       timeline.current = tl;
@@ -61,10 +52,24 @@ export function SiteMenu() {
     });
   }, { scope: dialog });
 
+  // Rotating or resizing past the breakpoint hides the menu, so drop it instantly and release the scroll lock.
+  useEffect(() => {
+    if (!open) return;
+    const desktop = window.matchMedia("(min-width: 701px)");
+    const onChange = () => {
+      if (!desktop.matches) return;
+      timeline.current?.pause(0);
+      dialog.current?.close();
+      unlockScroll();
+      setOpen(false);
+    };
+    desktop.addEventListener("change", onChange);
+    return () => desktop.removeEventListener("change", onChange);
+  }, [open]);
+
   const openMenu = () => {
     const element = dialog.current;
     if (!element || element.open) return;
-    setPrimed(true);
     lockScroll();
     element.showModal();
     setOpen(true);
@@ -97,7 +102,7 @@ export function SiteMenu() {
 
   return (
     <>
-      <button className="menu-toggle" ref={toggle} onClick={openMenu} onPointerEnter={() => setPrimed(true)} onFocus={() => setPrimed(true)} aria-expanded={open} aria-controls="site-menu">
+      <button className="menu-toggle" ref={toggle} onClick={openMenu} aria-expanded={open} aria-controls="site-menu">
         MENU <span aria-hidden="true"><i /><i /></span>
       </button>
       <dialog ref={dialog} id="site-menu" className="menu-overlay" aria-label="Site menu" onCancel={(event) => { event.preventDefault(); closeMenu(); }}>
@@ -108,26 +113,16 @@ export function SiteMenu() {
             <button className="menu-close" ref={closeButton} onClick={() => closeMenu()}>CLOSE <span aria-hidden="true"><i /><i /></span></button>
             <a className="menu-logo" href="#main" onClick={(event) => goTo(event, "main")} aria-label="Two Minds home"><Image src="/tm-logo.svg" alt="Two Minds" width={1076} height={190} /></a>
           </div>
-          <div className="menu-body">
-            <nav className="menu-nav" aria-label="Main navigation">
-              {navigation.map(([label, id], index) => (
-                <a key={id} className="menu-link" href={`#${id}`} onClick={(event) => goTo(event, id)} onPointerEnter={() => setActive(index)} onFocus={() => setActive(index)}>
-                  <span className="menu-index">0{index + 1}</span>
-                  <span className="menu-label-mask"><span className="menu-label">{label}</span></span>
-                  <ArrowUpRight className="menu-arrow" aria-hidden="true" />
-                  <span className="menu-rule" aria-hidden="true" />
-                </a>
-              ))}
-            </nav>
-            <div className="menu-preview" aria-hidden="true">
-              {primed && navigation.map(([, id], index) => (
-                <div key={id} className={`menu-shot${index === active ? " is-active" : ""}`}>
-                  <Image src={previews[id].src} alt="" fill sizes="(max-width: 700px) 1px, 28vw" />
-                </div>
-              ))}
-              <p className="menu-caption"><span>0{active + 1}</span>{previews[navigation[active][1]].caption}</p>
-            </div>
-          </div>
+          <nav className="menu-nav" aria-label="Mobile navigation">
+            {navigation.map(([label, id], index) => (
+              <a key={id} className="menu-link" href={`#${id}`} onClick={(event) => goTo(event, id)}>
+                <span className="menu-index">0{index + 1}</span>
+                <span className="menu-label-mask"><span className="menu-label">{label}</span></span>
+                <ArrowUpRight className="menu-arrow" aria-hidden="true" />
+                <span className="menu-rule" aria-hidden="true" />
+              </a>
+            ))}
+          </nav>
           <div className="menu-footer">
             <p>Secure, Scalable Systems<br />That Power Your Business.</p>
             <a href={contact}>{contactEmail}</a>
