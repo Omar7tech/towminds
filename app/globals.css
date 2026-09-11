@@ -18,14 +18,21 @@
   --animate-intro-lift: intro-lift 1s cubic-bezier(0.165, 0.84, 0.44, 1) both;
 }
 
-/* Homepage proportions follow the 1920px-wide reference artboard. --u is "1% of the artboard":
-   mostly viewport-driven so the layout keeps its proportions, part rem so browser zoom still
-   enlarges it (limited to 1.1vw so text never outgrows its boxes by more than 10%), and capped
-   at 1.2rem (19.2px) so wide screens stop scaling. The page is framed at 120rem (= 100u at the
-   cap) so percentage offsets and u-based sizes stay in sync on wide screens. */
+/* Homepage proportions follow the 1920px-wide reference artboard. --u is "1% of the artboard",
+   and every desktop size is a multiple of it. It is the smallest of four caps:
+     .7vw + .36rem  fluid base, partly rem so browser zoom still enlarges the page
+     1.1vw          keeps the rem share from letting text outgrow its boxes by >10%
+     1svh + .18rem  HEIGHT cap: the hero is 70u, so this keeps it inside ~90% of the screen.
+                    Without it the artboard only fits a 1440px-tall monitor, and every laptop
+                    got a hero and footer taller than the viewport with 40px body copy. The rem
+                    share is here for the same reason as above: svh alone cancels out under
+                    browser zoom, which would make zooming do nothing again.
+     1.2rem         19.2px = 1% of 1920, so wide screens stop scaling at the artboard size.
+   The page is framed at 120rem (= 100u at that cap) so percentage offsets and u-based sizes
+   stay in sync on wide screens. */
 :root {
   color-scheme: dark;
-  --u: min(calc(0.7vw + 0.36rem), 1.1vw, 1.2rem);
+  --u: min(calc(0.7vw + 0.36rem), 1.1vw, calc(1svh + 0.18rem), 1.2rem);
 }
 
 /* The hero intro runs in CSS so it starts at first paint, not after hydration. The h1 only moves

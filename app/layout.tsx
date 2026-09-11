@@ -14,9 +14,15 @@ const neueMachina = localFont({
   ],
 });
 
+const description =
+  "Two Minds designs and engineers secure, scalable business systems: operations and CRM platforms, brand experiences, and cyber security for teams that need software built around how they actually work.";
+
 export const metadata: Metadata = {
-  title: "twominds",
-  description: "",
+  metadataBase: new URL("https://wearetwominds.com"),
+  title: { default: "Two Minds — Design & Engineer Your Business", template: "%s · Two Minds" },
+  description,
+  openGraph: { type: "website", url: "/", siteName: "Two Minds", title: "Two Minds — Design & Engineer Your Business", description },
+  twitter: { card: "summary_large_image", title: "Two Minds — Design & Engineer Your Business", description },
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {

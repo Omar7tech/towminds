@@ -18,8 +18,10 @@ const buttonIcon = "w-[calc(3.7*var(--u))] h-[calc(3.7*var(--u))] stroke-2 max-[
 const cardTitle =
   "absolute m-0 font-medium leading-[1.12] tracking-[calc(-.035*var(--u))] max-[900px]:bottom-[25px] max-[900px]:left-[22px] max-[900px]:leading-[1.15] max-[900px]:tracking-[-.4px]";
 const cardTitleSize = "bottom-[9.3%] text-[calc(2.13*var(--u))] max-[900px]:text-[20px]";
+// Insets are grid-relative (2.46cqw = 38px on the 1920 artboard) so every card gets the same
+// gutter regardless of its column span, and it can't drift when --u is capped by a short screen.
 const cardTag =
-  "absolute right-[calc(2*var(--u))] top-[8%] whitespace-nowrap rounded-[40px] bg-[#ffffff35] px-[calc(1.15*var(--u))] text-[calc(1.3125*var(--u))] font-semibold leading-[calc(2.7*var(--u))] max-[900px]:right-4 max-[900px]:top-[18px] max-[900px]:px-3 max-[900px]:text-[10px] max-[900px]:leading-[25px]";
+  "absolute right-[2.46cqw] top-[8%] whitespace-nowrap rounded-[40px] bg-[#ffffff35] px-[calc(1.15*var(--u))] text-[calc(1.3125*var(--u))] font-semibold leading-[calc(2.7*var(--u))] max-[900px]:right-4 max-[900px]:top-[18px] max-[900px]:px-3 max-[900px]:text-[10px] max-[900px]:leading-[25px]";
 const footerLink = "hover:underline hover:underline-offset-4";
 const tabletColumn = "min-[601px]:max-[900px]:mx-auto min-[601px]:max-[900px]:max-w-[620px]";
 
@@ -52,17 +54,20 @@ function CardArt({ variant }: { variant: string }) {
 function GrowthChart() {
   const heights = [30, 49, 67, 48, 80, 69, 39, 23, 15, 42, 53, 34, 43, 63, 20, 39, 81, 50, 32, 40, 68, 23, 22, 34, 42, 76, 28, 50, 37, 30, 75];
   return (
-    <svg className="absolute bottom-[10%] right-[calc(2*var(--u))] h-[45%] w-[41%] text-white max-[900px]:bottom-[26px] max-[900px]:right-[18px] max-[900px]:w-[42%]" viewBox="0 0 240 110" aria-hidden="true">
+    <svg className="absolute bottom-[10%] right-[2.46cqw] h-[45%] w-[41%] text-white max-[900px]:bottom-[26px] max-[900px]:right-[18px] max-[900px]:w-[42%]" viewBox="0 0 240 110" aria-hidden="true">
       <rect x="1" y="1" width="238" height="108" rx="20" fill="none" stroke="currentColor" strokeOpacity=".4" />
       {heights.map((h, i) => <rect key={i} x={9 + i * 7.2} y={100 - h} width="4.6" height={h} rx="1" fill="currentColor" />)}
     </svg>
   );
 }
 
+// Height comes from the card's own width (the artboard's 633x389 / 898x389 tiles) rather than from
+// --u, so the cards keep their proportions even when --u is capped by a short viewport.
 function IndustryCard({ variant, span, href, children }: { variant: string; span: string; href: string; children: ReactNode }) {
+  const aspect = span === "col-span-7" ? "aspect-[898/389]" : "aspect-[633/389]";
   return (
     <a
-      className={`reveal group relative block h-[calc(20.25*var(--u))] rounded-[calc(2.8*var(--u))] ${span} before:pointer-events-none before:absolute before:inset-0 before:rounded-[inherit] before:opacity-0 before:shadow-[0_10px_35px_#13131415] before:content-[''] motion-safe:transition-transform motion-safe:duration-300 motion-safe:before:transition-opacity motion-safe:before:duration-300 hover:-translate-y-[5px] hover:before:opacity-100 max-[900px]:col-auto max-[900px]:h-[240px] max-[900px]:rounded-[26px] min-[601px]:max-[900px]:h-[280px]`}
+      className={`reveal group relative block rounded-[calc(2.8*var(--u))] ${span} ${aspect} max-[900px]:aspect-auto before:pointer-events-none before:absolute before:inset-0 before:rounded-[inherit] before:opacity-0 before:shadow-[0_10px_35px_#13131415] before:content-[''] motion-safe:transition-transform motion-safe:duration-300 motion-safe:before:transition-opacity motion-safe:before:duration-300 hover:-translate-y-[5px] hover:before:opacity-100 max-[900px]:col-auto max-[900px]:h-[240px] max-[900px]:rounded-[26px] min-[601px]:max-[900px]:h-[280px]`}
       href={href}
     >
       <div className={`absolute inset-0 overflow-hidden rounded-[inherit] ${variant === "signal" ? "border border-[#ffffff80] bg-signal" : "bg-mist"}`}>
@@ -101,7 +106,7 @@ export default function Home() {
         </section>
         <section className="pt-[calc(1.4*var(--u))] max-[900px]:pt-0" id="industries" aria-labelledby="industry-title">
           <h2 className={`reveal m-0 mb-[calc(4.95*var(--u))] text-center font-machina text-[calc(3.984*var(--u))] font-normal leading-[1.035] tracking-[calc(-.105*var(--u))] max-[900px]:mb-8 max-[900px]:px-[6%] max-[900px]:text-[clamp(23px,5.6vw,37px)] max-[900px]:leading-[1.08] max-[900px]:tracking-[-.7px] max-[900px]:[&_br]:hidden ${tabletColumn}`} id="industry-title">SYSTEMS BUILT FOR HOW YOUR<br /> INDUSTRY ACTUALLY WORKS.</h2>
-          <div className={`mx-auto grid w-[81.25%] grid-cols-12 gap-x-[calc(1.5*var(--u))] gap-y-[calc(1.6*var(--u))] max-[900px]:w-[90%] max-[900px]:grid-cols-1 max-[900px]:gap-4 ${tabletColumn}`}>
+          <div className={`@container mx-auto grid w-[81.25%] grid-cols-12 gap-x-[calc(1.5*var(--u))] gap-y-[calc(1.6*var(--u))] max-[900px]:w-[90%] max-[900px]:grid-cols-1 max-[900px]:gap-4 ${tabletColumn}`}>
             <IndustryCard variant="signal" span="col-span-5" href={`${contact}?subject=Signal%20check`}>
               <span className={cardTag}>SIGNAL CHECK</span>
               <h3 className={`${cardTitle} ${cardTitleSize} left-[6.6%]`}>Know What Your<br />System Needs.</h3>
@@ -159,7 +164,7 @@ export default function Home() {
         <div className={`grid grid-cols-[38.3%_19.7%_20%_22%] text-[calc(1.755*var(--u))] leading-[1.3] max-[900px]:grid-cols-2 max-[900px]:gap-x-6 max-[900px]:gap-y-9 max-[900px]:text-[14px] ${tabletColumn}`}>
           <div className="max-[900px]:col-span-full">
             <ContactForm />
-            <p className="mb-0 mt-[calc(11.55*var(--u))] text-[calc(2*var(--u))] leading-[1.12] max-[900px]:mt-[30px] max-[900px]:text-[17px] max-[900px]:leading-[1.3]">Lets Talk<br /><a href={contact}>{contactEmail}</a></p>
+            <p className="mb-0 mt-[calc(11.55*var(--u))] text-[calc(2*var(--u))] leading-[1.12] max-[900px]:mt-[30px] max-[900px]:text-[17px] max-[900px]:leading-[1.3]">Let&apos;s Talk<br /><a href={contact}>{contactEmail}</a></p>
           </div>
           <div className="flex flex-col items-start gap-[calc(1.45*var(--u))] max-[900px]:gap-3">
             <h2 className="m-0 mb-[calc(.55*var(--u))] font-machina text-[calc(1.79*var(--u))] font-extrabold max-[900px]:mb-[7px] max-[900px]:text-[14px]">COMPANY</h2>
@@ -171,11 +176,11 @@ export default function Home() {
           <div className="flex flex-col items-start gap-[calc(1.45*var(--u))] max-[900px]:gap-3">
             <h2 className="m-0 mb-[calc(.55*var(--u))] font-machina text-[calc(1.79*var(--u))] font-extrabold max-[900px]:mb-[7px] max-[900px]:text-[14px]">INDUSTRIES</h2>
             {["F&B", "FMCG", "Medical", "Retail", "Construction", "Engineering", "Logistics"].map(label => <a className={footerLink} key={label} href={`${contact}?subject=${encodeURIComponent(label + " industry system")}`}>{label}</a>)}
-            <a className="underline underline-offset-4" href="#industries">Veiw All</a>
+            <a className="underline underline-offset-4" href="#industries">View All</a>
           </div>
           <div className="flex flex-col items-start gap-[calc(1.45*var(--u))] max-[900px]:gap-3">
             <h2 className="m-0 mb-[calc(.55*var(--u))] font-machina text-[calc(1.79*var(--u))] font-extrabold max-[900px]:mb-[7px] max-[900px]:text-[14px]">SERVICES</h2>
-            {["Web Development", "Cyber Secuirty", "CRM Systems"].map(label => <a className={footerLink} key={label} href={`${contact}?subject=${encodeURIComponent(label)}`}>{label}</a>)}
+            {["Web Development", "Cyber Security", "CRM Systems"].map(label => <a className={footerLink} key={label} href={`${contact}?subject=${encodeURIComponent(label)}`}>{label}</a>)}
           </div>
         </div>
         {/* No scaleY: the logo keeps its own proportions. */}
