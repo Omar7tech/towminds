@@ -75,7 +75,6 @@ export default function Home() {
           <div className="footer-column"><h2>SERVICES</h2>{["Web Development", "Cyber Secuirty", "CRM Systems"].map(label => <a key={label} href={`${contact}?subject=${encodeURIComponent(label)}`}>{label}</a>)}</div>
         </div>
         <Image className="footer-logo" src="/tm-logo.svg" alt="Two Minds" width={1076} height={190} />
-        <p className="copyright">Copy Rights TwoMinds Crafted by YamenCreates</p>
       </footer>
     </RevealRoot>
   );
