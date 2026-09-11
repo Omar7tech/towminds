@@ -1,118 +1,23 @@
 @import "tailwindcss";
-@import "tw-animate-css";
-@import "shadcn/tailwind.css";
-
-@custom-variant dark (&:is(.dark *));
 
 @theme inline {
   --color-steel: var(--steel);
   --color-mist: var(--mist);
   --color-ink: var(--ink);
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-  --font-heading: var(--font-space-grotesk);
+  --font-sans: var(--font-inter);
   --font-machina: var(--font-neue-machina);
-  --color-sidebar-ring: var(--sidebar-ring);
-  --color-sidebar-border: var(--sidebar-border);
-  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
-  --color-sidebar-accent: var(--sidebar-accent);
-  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
-  --color-sidebar-primary: var(--sidebar-primary);
-  --color-sidebar-foreground: var(--sidebar-foreground);
-  --color-sidebar: var(--sidebar);
-  --color-chart-5: var(--chart-5);
-  --color-chart-4: var(--chart-4);
-  --color-chart-3: var(--chart-3);
-  --color-chart-2: var(--chart-2);
-  --color-chart-1: var(--chart-1);
-  --color-ring: var(--ring);
-  --color-input: var(--input);
-  --color-border: var(--border);
-  --color-destructive: var(--destructive);
-  --color-accent-foreground: var(--accent-foreground);
-  --color-accent: var(--accent);
-  --color-muted-foreground: var(--muted-foreground);
-  --color-muted: var(--muted);
-  --color-secondary-foreground: var(--secondary-foreground);
-  --color-secondary: var(--secondary);
-  --color-primary-foreground: var(--primary-foreground);
-  --color-primary: var(--primary);
-  --color-popover-foreground: var(--popover-foreground);
-  --color-popover: var(--popover);
-  --color-card-foreground: var(--card-foreground);
-  --color-card: var(--card);
-  --radius-sm: calc(var(--radius) * 0.6);
-  --radius-md: calc(var(--radius) * 0.8);
-  --radius-lg: var(--radius);
-  --radius-xl: calc(var(--radius) * 1.4);
-  --radius-2xl: calc(var(--radius) * 1.8);
-  --radius-3xl: calc(var(--radius) * 2.2);
-  --radius-4xl: calc(var(--radius) * 2.6);
 }
 
-body {
-  font-family: var(--font-sans), sans-serif;
-}
-
-/* Dark is the only theme. Both selectors carry the same values so the `dark:`
-   variant keeps working regardless of where the `dark` class sits. */
-:root,
-.dark {
+:root {
   color-scheme: dark;
-  --radius: 0.625rem;
   --steel: #98a8a9;
   --mist: #cfdee2;
   --ink: #131314;
-  --background: oklch(0.145 0 0);
-  --foreground: oklch(0.985 0 0);
-  --card: oklch(0.205 0 0);
-  --card-foreground: oklch(0.985 0 0);
-  --popover: oklch(0.205 0 0);
-  --popover-foreground: oklch(0.985 0 0);
-  --primary: oklch(0.922 0 0);
-  --primary-foreground: oklch(0.205 0 0);
-  --secondary: oklch(0.269 0 0);
-  --secondary-foreground: oklch(0.985 0 0);
-  --muted: oklch(0.269 0 0);
-  --muted-foreground: oklch(0.708 0 0);
-  --accent: oklch(0.269 0 0);
-  --accent-foreground: oklch(0.985 0 0);
-  --destructive: oklch(0.704 0.191 22.216);
-  --border: oklch(1 0 0 / 10%);
-  --input: oklch(1 0 0 / 15%);
-  --ring: oklch(0.556 0 0);
-  --chart-1: oklch(0.87 0 0);
-  --chart-2: oklch(0.556 0 0);
-  --chart-3: oklch(0.439 0 0);
-  --chart-4: oklch(0.371 0 0);
-  --chart-5: oklch(0.269 0 0);
-  --sidebar: oklch(0.205 0 0);
-  --sidebar-foreground: oklch(0.985 0 0);
-  --sidebar-primary: oklch(0.488 0.243 264.376);
-  --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.269 0 0);
-  --sidebar-accent-foreground: oklch(0.985 0 0);
-  --sidebar-border: oklch(1 0 0 / 10%);
-  --sidebar-ring: oklch(0.556 0 0);
 }
 
-@layer base {
-  * {
-    @apply border-border outline-ring/50;
-  }
-  body {
-    @apply bg-background text-foreground;
-  }
-  html {
-    @apply font-sans;
-  }
-}
 /* Homepage proportions follow the 1920px-wide reference artboard. */
-@font-face{font-family:ReferenceSF;src:url('/design/TT0.ttf') format('truetype');font-weight:100 900;font-display:swap}
 html{scroll-behavior:smooth;scroll-padding-top:30px}
-body{margin:0;background:#a5b6b8;color:#fff;font-family:ReferenceSF,Arial,sans-serif}
+body{margin:0;background:#a5b6b8;color:#fff;font-family:var(--font-inter),Arial,sans-serif}
 *{box-sizing:border-box}
 a{color:inherit;text-decoration:none}
 button,input{font:inherit}
@@ -138,9 +43,13 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid #fff;
 .industries{padding-top:1.4vw}
 .industry-title{text-align:center;font-family:var(--font-neue-machina),sans-serif;font-weight:400;font-size:3.984vw;line-height:1.035;margin:0 0 4.95vw;letter-spacing:-.105vw}
 .industry-grid{width:81.25%;margin:auto;display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:1.6vw 1.5vw}
-.industry-card{height:20.25vw;border-radius:2.8vw;position:relative;overflow:hidden;background:#cfdee2;transition:box-shadow .3s,translate .3s}
-.industry-card:hover{translate:0 -5px;box-shadow:0 10px 35px #13131415}
-.signal{grid-column:span 5;background:linear-gradient(135deg,#a0b1b3,#cfdee2);border:1px solid #ffffff80}
+.industry-card{display:block;height:20.25vw;border-radius:2.8vw;position:relative;transition:translate .3s}
+.industry-card:hover{translate:0 -5px}
+/* Shadow lives on a pseudo-element so hover fades opacity (composited) instead of repainting box-shadow. */
+.industry-card::before{content:"";position:absolute;inset:0;border-radius:inherit;box-shadow:0 10px 35px #13131415;opacity:0;transition:opacity .3s;pointer-events:none}
+.industry-card:hover::before{opacity:1}
+.card-surface{position:absolute;inset:0;border-radius:inherit;overflow:hidden;background:#cfdee2}
+.signal{grid-column:span 5}.signal .card-surface{background:linear-gradient(135deg,#a0b1b3,#cfdee2);border:1px solid #ffffff80}
 .operations{grid-column:span 7}.growth{grid-column:span 7}.experience{grid-column:span 5}
 .card-art{position:absolute;width:100%;height:100%;inset:0;stroke:#98a8a9;stroke-width:2;opacity:.15;transition:transform .8s}
 .signal .card-art{stroke:#fff;opacity:.18}.industry-card:hover .card-art{transform:scale(1.07) rotate(4deg)}
@@ -170,7 +79,7 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid #fff;
 .footer-column{display:flex;flex-direction:column;align-items:flex-start;gap:1.45vw}.footer-column h2{font-family:var(--font-neue-machina),sans-serif;font-size:1.79vw;font-weight:800;margin:0 0 .55vw}.footer-column a:hover{text-decoration:underline;text-underline-offset:4px}.footer-column .view-all{text-decoration:underline;text-underline-offset:4px}
 .footer-logo{width:100%;height:auto;filter:brightness(0);display:block;margin:8vw 0 -1.4vw;transform:scaleY(1.16)}
 .copyright{color:#131314;text-align:center;font-size:1.06vw;line-height:1.2;margin:0}
-.menu-toggle{display:none}.mobile-menu{border:0;padding:0;background:transparent;color:#131314;width:calc(100% - 24px);max-width:560px;max-height:calc(100dvh - 24px);margin:12px auto;overflow:visible}.mobile-menu::backdrop{background:#13131480;backdrop-filter:blur(12px)}
+.menu-toggle{display:none}.mobile-menu{border:0;padding:0;background:transparent;color:#131314;width:calc(100% - 24px);max-width:560px;max-height:calc(100dvh - 24px);margin:12px auto;overflow:visible}.mobile-menu::backdrop{background:#131314b3}
 .mobile-menu-inner{padding:25px;border-radius:28px;background:linear-gradient(145deg,#e0ebed,#a7babc);min-height:540px;max-height:calc(100dvh - 24px);overflow:auto;position:relative}
 .mobile-menu-top{display:flex;align-items:center;justify-content:space-between}.mobile-menu-top img{filter:brightness(0)}.mobile-menu-top button{border:1px solid #13131430;background:transparent;border-radius:50%;width:44px;height:44px;display:grid;place-items:center;cursor:pointer}
 .mobile-menu nav{margin:65px 0 45px}.mobile-nav-link{display:flex;align-items:center;gap:15px;padding:24px 0;border-bottom:1px solid #13131430;font-family:var(--font-neue-machina),sans-serif;font-size:clamp(22px,6vw,34px)}.mobile-nav-link small{font-size:11px;align-self:flex-start}.mobile-nav-link svg{margin-left:auto;width:24px;flex:none}.mobile-project{display:flex;align-items:center;justify-content:space-between;border-radius:100px;background:#ffffff70;padding:18px 22px;font-size:13px}.mobile-email{display:block;margin-top:25px;font-size:13px}
@@ -179,9 +88,19 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid #fff;
 @media(max-width:700px){
  .site-header{top:22px;left:5%;right:5%}.desktop-nav{display:none}.header-logo{width:140px}.menu-toggle{display:flex;align-items:center;gap:15px;border:0;border-radius:50px;background:#ffffff75;color:#131314;padding:13px 18px;font-family:var(--font-neue-machina),sans-serif;font-size:11px}.menu-toggle span{display:grid;gap:5px}.menu-toggle i{width:17px;height:1px;background:#131314}
  .hero{height:760px;max-height:1000px}.hero-photo{height:620px;mask-image:linear-gradient(#000 0%,#000 60%,transparent 100%)}.hero-photo img{object-fit:cover;object-position:58% top}.hero-copy{left:6%;top:350px;font-size:16px;line-height:1.25;text-shadow:0 1px 12px #fff9}.hero-title{left:6%;top:440px;right:4%;font-size:clamp(28px,6.35vw,44px);letter-spacing:-1px;line-height:1.15}.hero>.project-button{top:590px;left:50%;transform:translateX(-50%)}
- .project-button{height:52px;gap:8px;padding:0 23px;font-size:13px}.project-button svg{width:27px;height:27px}.industries{padding-top:0}.industry-title{font-size:clamp(23px,5.6vw,37px);line-height:1.08;letter-spacing:-.7px;padding:0 6%;margin-bottom:32px}.industry-title br{display:none}.industry-grid{width:90%;grid-template-columns:1fr;gap:16px}.industry-card{grid-column:auto;height:240px;border-radius:26px}.card-tag{top:18px;right:16px;font-size:10px;line-height:25px;padding:0 12px}.industry-card h3,.growth h3{font-size:20px;line-height:1.15;left:22px;bottom:25px;letter-spacing:-.4px}.growth h3{font-size:17px}.growth h3 strong{font-size:52px}.growth-chart{width:42%;bottom:26px;right:18px}.card-art{width:100%;height:100%}
- .company{padding-top:85px}.manifesto{margin:0 7%;font-size:clamp(23px,5.7vw,37px);line-height:1.17;letter-spacing:-.55px}.manifesto p{margin-bottom:28px}.desktop-break{display:none}.services-visual{width:90%;margin-top:55px}.laptop-photo{border-radius:25px;aspect-ratio:1.22}.laptop-photo>img:first-child{object-fit:cover;object-position:center}.laptop-photo .laptop-logo{top:35%;width:80%;left:10%}.service-links{left:5%;width:90%;top:85%;padding:18px 16px;border-radius:22px}.service-links a{font-size:clamp(15px,3.8vw,23px);line-height:1.65;gap:8px;letter-spacing:-.3px}.service-links svg{width:23px;height:23px}
+ .project-button{height:52px;gap:8px;padding:0 23px;font-size:13px;backdrop-filter:none;background:#ffffff80}.project-button svg{width:27px;height:27px}.industries{padding-top:0}.industry-title{font-size:clamp(23px,5.6vw,37px);line-height:1.08;letter-spacing:-.7px;padding:0 6%;margin-bottom:32px}.industry-title br{display:none}.industry-grid{width:90%;grid-template-columns:1fr;gap:16px}.industry-card{grid-column:auto;height:240px;border-radius:26px}.card-tag{top:18px;right:16px;font-size:10px;line-height:25px;padding:0 12px}.industry-card h3,.growth h3{font-size:20px;line-height:1.15;left:22px;bottom:25px;letter-spacing:-.4px}.growth h3{font-size:17px}.growth h3 strong{font-size:52px}.growth-chart{width:42%;bottom:26px;right:18px}.card-art{width:100%;height:100%}
+ .company{padding-top:85px}.manifesto{margin:0 7%;font-size:clamp(23px,5.7vw,37px);line-height:1.17;letter-spacing:-.55px}.manifesto p{margin-bottom:28px}.desktop-break{display:none}.services-visual{width:90%;margin-top:55px}.laptop-photo{border-radius:25px;aspect-ratio:1.22}.laptop-photo>img:first-child{object-fit:cover;object-position:center}.laptop-photo .laptop-logo{top:35%;width:80%;left:10%}.service-links{left:5%;width:90%;top:85%;padding:18px 16px;border-radius:22px;backdrop-filter:none;background:#ffffff70}.service-links a{font-size:clamp(15px,3.8vw,23px);line-height:1.65;gap:8px;letter-spacing:-.3px}.service-links svg{width:23px;height:23px}
  .dashboard-section{padding:155px 0 100px}.dashboard-panel{width:90%;padding:35px 15px 25px;border-radius:28px}.dashboard-panel h2{font-size:clamp(29px,7.3vw,45px);letter-spacing:-1px;line-height:1.13;margin-bottom:17px}.dashboard-panel p{font-size:15px;line-height:1.35;margin:0 8px 27px}.dashboard-panel>img{width:100%;border-radius:14px}.dashboard-cta{margin-top:28px}.dashboard-cta .project-button{height:52px;font-size:13px}
  .footer{padding:45px 6% 20px}.footer-grid{grid-template-columns:1fr 1fr;gap:36px 24px;font-size:14px}.contact-column{grid-column:1/-1}.contact-column label{font-size:17px}.email-field{height:42px;width:100%;max-width:340px;margin-top:15px}.email-field input{font-size:16px;padding:0 16px}.email-field button{padding:0 13px}.email-field svg{width:20px;height:20px}.lets-talk{font-size:17px;line-height:1.3;margin:30px 0 0}.footer-column{gap:12px}.footer-column h2{font-size:14px;margin-bottom:7px}.footer-logo{margin:48px 0 6px}.copyright{font-size:9px}
+}
+/* Hero intro runs in CSS so it starts at first paint, not after hydration. The h1 only moves (never
+   hidden) so it stays eligible for LCP. `translate` avoids clobbering the mobile button's transform. */
+@keyframes intro-rise{from{opacity:0;translate:0 var(--rise,35px)}}
+@keyframes intro-slide{from{translate:0 35px}}
+@media(prefers-reduced-motion:no-preference){
+ .site-header{--rise:-20px;animation:intro-rise 1s cubic-bezier(.165,.84,.44,1) both}
+ .hero-copy{animation:intro-rise 1s cubic-bezier(.165,.84,.44,1) .2s both}
+ .hero-title span{animation:intro-slide 1s cubic-bezier(.165,.84,.44,1) .32s both}.hero-title span+span{animation-delay:.44s}
+ .hero>.project-button{--rise:18px;animation:intro-rise 1s cubic-bezier(.165,.84,.44,1) .6s both}
 }
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{transition:none!important}}
