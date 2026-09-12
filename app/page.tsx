@@ -7,6 +7,7 @@ import laptopPhoto from "@/public/design/laptop-photo.webp";
 import dashboardShot from "@/public/design/dashboard.webp";
 import { ContactForm } from "@/components/home/contact-form";
 import { FooterLogo } from "@/components/home/footer-logo";
+import { HeaderLogo } from "@/components/home/header-logo";
 import { RevealRoot } from "@/components/home/reveal-root";
 import { SiteMenu } from "@/components/home/site-menu";
 import { contact, contactEmail, navigation } from "@/lib/site";
@@ -86,14 +87,12 @@ export default function Home() {
     <RevealRoot>
       <div className="absolute inset-y-0 left-1/2 -z-20 w-screen -translate-x-1/2 bg-ambient" aria-hidden="true" />
       <a href="#main" className="fixed left-5 top-2.5 z-20 -translate-y-[150%] bg-ink p-3 focus:translate-y-0">Skip to content</a>
-      <header className="absolute left-[5.4%] right-[4.5%] top-[calc(3.75*var(--u))] z-[3] flex items-center justify-between text-ink [--rise:-20px] motion-safe:animate-intro-rise max-[900px]:left-[5%] max-[900px]:right-[5%] max-[900px]:top-[22px]">
+      <header className="absolute left-[5.4%] right-[4.5%] top-[calc(3.75*var(--u))] z-[3] max-[900px]:fixed flex items-center justify-between text-ink [--rise:-20px] motion-safe:animate-intro-rise max-[900px]:left-[5%] max-[900px]:right-[5%] max-[900px]:top-[22px]">
         <nav className="flex h-[calc(5.09*var(--u))] w-[calc(36.7*var(--u))] items-center justify-evenly rounded-full bg-[#ffffff60] font-machina text-[calc(1.43*var(--u))] font-light backdrop-blur-[15px] max-[900px]:hidden" aria-label="Main navigation">
           {navigation.map(([label, id]) => <a className="px-[calc(.8*var(--u))] py-[calc(1*var(--u))] motion-safe:transition-opacity hover:opacity-50" key={id} href={`#${id}`}>{label}</a>)}
         </nav>
         <SiteMenu />
-        <a className="w-[calc(17.1*var(--u))] max-[900px]:w-[140px]" href="#main" aria-label="Two Minds home">
-          <Image className="h-auto w-full brightness-0" src="/tm-logo.svg" alt="Two Minds" width={1076} height={190} priority />
-        </a>
+        <HeaderLogo />
       </header>
       <main id="main">
         <section className="relative h-[calc(70*var(--u))] max-[900px]:h-[760px] max-[900px]:max-h-[1000px]" aria-labelledby="hero-title">
