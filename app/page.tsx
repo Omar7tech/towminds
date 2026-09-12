@@ -23,7 +23,9 @@ const cardTitleSize = "bottom-[9.3%] text-[calc(2.13*var(--u))] max-[900px]:text
 // gutter regardless of its column span, and it can't drift when --u is capped by a short screen.
 const cardTag =
   "absolute right-[2.46cqw] top-[8%] whitespace-nowrap rounded-[40px] bg-[#ffffff35] px-[calc(1.15*var(--u))] text-[calc(1.3125*var(--u))] font-semibold leading-[calc(2.7*var(--u))] max-[900px]:right-4 max-[900px]:top-[18px] max-[900px]:px-3 max-[900px]:text-[10px] max-[900px]:leading-[25px]";
-const footerLink = "hover:underline hover:underline-offset-4";
+// Hover: the link glides a few px to the right and eases back. Nothing else changes.
+const footerLink =
+  "inline-block ease-[cubic-bezier(.19,1,.22,1)] motion-safe:transition-transform motion-safe:duration-[400ms] hover:translate-x-[6px]";
 const tabletColumn = "min-[601px]:max-[900px]:mx-auto min-[601px]:max-[900px]:max-w-[620px]";
 
 function ProjectButton({ className = "" }: { className?: string }) {
@@ -165,7 +167,7 @@ export default function Home() {
         <div className={`grid grid-cols-[38.3%_19.7%_20%_22%] text-[calc(1.755*var(--u))] leading-[1.3] max-[900px]:grid-cols-2 max-[900px]:gap-x-6 max-[900px]:gap-y-9 max-[900px]:text-[14px] ${tabletColumn}`}>
           <div className="max-[900px]:col-span-full">
             <ContactForm />
-            <p className="mb-0 mt-[calc(11.55*var(--u))] text-[calc(2*var(--u))] leading-[1.12] max-[900px]:mt-[30px] max-[900px]:text-[17px] max-[900px]:leading-[1.3]">Let&apos;s Talk<br /><a href={contact}>{contactEmail}</a></p>
+            <p className="mb-0 mt-[calc(11.55*var(--u))] text-[calc(2*var(--u))] leading-[1.12] max-[900px]:mt-[30px] max-[900px]:text-[17px] max-[900px]:leading-[1.3]">Let&apos;s Talk<br /><a className={footerLink} href={contact}>{contactEmail}</a></p>
           </div>
           <div className="flex flex-col items-start gap-[calc(1.45*var(--u))] max-[900px]:gap-3">
             <h2 className="m-0 mb-[calc(.55*var(--u))] font-machina text-[calc(1.79*var(--u))] font-extrabold max-[900px]:mb-[7px] max-[900px]:text-[14px]">COMPANY</h2>
@@ -177,7 +179,7 @@ export default function Home() {
           <div className="flex flex-col items-start gap-[calc(1.45*var(--u))] max-[900px]:gap-3">
             <h2 className="m-0 mb-[calc(.55*var(--u))] font-machina text-[calc(1.79*var(--u))] font-extrabold max-[900px]:mb-[7px] max-[900px]:text-[14px]">INDUSTRIES</h2>
             {["F&B", "FMCG", "Medical", "Retail", "Construction", "Engineering", "Logistics"].map(label => <a className={footerLink} key={label} href={`${contact}?subject=${encodeURIComponent(label + " industry system")}`}>{label}</a>)}
-            <a className="underline underline-offset-4" href="#industries">View All</a>
+            <a className={`${footerLink} underline underline-offset-4`} href="#industries">View All</a>
           </div>
           <div className="flex flex-col items-start gap-[calc(1.45*var(--u))] max-[900px]:gap-3">
             <h2 className="m-0 mb-[calc(.55*var(--u))] font-machina text-[calc(1.79*var(--u))] font-extrabold max-[900px]:mb-[7px] max-[900px]:text-[14px]">SERVICES</h2>
