@@ -90,7 +90,7 @@ export function ComingSoon() {
         <p className="soon-line m-0 font-machina text-[10px] tracking-[.28em] text-steel">TWO MINDS</p>
         <h2 id="soon-title" className="soon-line m-0 mt-4 font-machina text-[30px] font-normal leading-[1.05] tracking-[-.01em]">COMING<br />SOON.</h2>
         <p className="soon-line m-0 mt-4 max-w-[34ch] text-[14px] leading-[1.5] text-steel">
-          We&apos;re still building this part. Everything else on the site is live — check back shortly.
+          We&apos;re still building this part. Check back soon.
         </p>
         <p className="soon-line m-0 mt-5 text-[13px] text-[#e3eef0]/70">{contactEmail}</p>
       </div>

@@ -19,10 +19,10 @@ const description =
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://twomindsengine.com"),
-  title: { default: "Two Minds — Design & Engineer Your Business", template: "%s · Two Minds" },
+  title: { default: "Two Minds | Design & Engineer Your Business", template: "%s | Two Minds" },
   description,
-  openGraph: { type: "website", url: "/", siteName: "Two Minds", title: "Two Minds — Design & Engineer Your Business", description },
-  twitter: { card: "summary_large_image", title: "Two Minds — Design & Engineer Your Business", description },
+  openGraph: { type: "website", url: "/", siteName: "Two Minds", title: "Two Minds | Design & Engineer Your Business", description },
+  twitter: { card: "summary_large_image", title: "Two Minds | Design & Engineer Your Business", description },
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
