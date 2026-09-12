@@ -1,7 +1,8 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Inter } from "next/font/google";
 import localFont from "next/font/local";
 import "./globals.css";
+import { siteDescription, siteName, siteTitle, siteUrl } from "@/lib/site";
 
 const inter = Inter({ variable: "--font-inter", subsets: ["latin"], display: "swap" });
 
@@ -14,15 +15,50 @@ const neueMachina = localFont({
   ],
 });
 
-const description =
-  "Two Minds designs and engineers secure, scalable business systems: operations and CRM platforms, brand experiences, and cyber security for teams that need software built around how they actually work.";
-
 export const metadata: Metadata = {
-  metadataBase: new URL("https://twomindsengine.com"),
-  title: { default: "Two Minds | Design & Engineer Your Business", template: "%s | Two Minds" },
-  description,
-  openGraph: { type: "website", url: "/", siteName: "Two Minds", title: "Two Minds | Design & Engineer Your Business", description },
-  twitter: { card: "summary_large_image", title: "Two Minds | Design & Engineer Your Business", description },
+  metadataBase: new URL(siteUrl),
+  title: { default: siteTitle, template: "%s | Two Minds" },
+  description: siteDescription,
+  applicationName: siteName,
+  authors: [{ name: siteName, url: siteUrl }],
+  creator: siteName,
+  publisher: siteName,
+  category: "technology",
+  keywords: [
+    "business systems",
+    "CRM systems",
+    "operations software",
+    "web development",
+    "cyber security",
+    "brand experience",
+    "custom software",
+    "Two Minds",
+  ],
+  alternates: { canonical: "/" },
+  formatDetection: { telephone: false, address: false, email: false },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: { index: true, follow: true, "max-image-preview": "large", "max-snippet": -1, "max-video-preview": -1 },
+  },
+  openGraph: {
+    type: "website",
+    url: "/",
+    siteName,
+    title: siteTitle,
+    description: siteDescription,
+    locale: "en_US",
+  },
+  twitter: { card: "summary_large_image", title: siteTitle, description: siteDescription },
+  appleWebApp: { capable: true, title: siteName, statusBarStyle: "black-translucent" },
+};
+
+// Tints the browser chrome on mobile to match the top of the page.
+export const viewport: Viewport = {
+  themeColor: [
+    { media: "(prefers-color-scheme: light)", color: "#a2b4b6" },
+    { media: "(prefers-color-scheme: dark)", color: "#131314" },
+  ],
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {

@@ -11,7 +11,7 @@ import { FooterLogo } from "@/components/home/footer-logo";
 import { HeaderLogo } from "@/components/home/header-logo";
 import { RevealRoot } from "@/components/home/reveal-root";
 import { SiteMenu } from "@/components/home/site-menu";
-import { contact, contactEmail, navigation } from "@/lib/site";
+import { contact, contactEmail, navigation, siteDescription, siteName, siteTitle, siteUrl } from "@/lib/site";
 
 // Sizes below 900px are fixed pixels; above, they scale with --u (1% of the 1920 artboard).
 const button =
@@ -83,10 +83,49 @@ function IndustryCard({ variant, span, href, children }: { variant: string; span
   );
 }
 
+// Structured data: who the company is, what the site is, what this page is. Kept to facts that
+// are actually on the page so search engines and the markup never disagree.
+const structuredData = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": `${siteUrl}/#organization`,
+      name: siteName,
+      url: siteUrl,
+      email: contactEmail,
+      description: siteDescription,
+      logo: { "@type": "ImageObject", url: `${siteUrl}/icon-512.png`, width: 512, height: 512 },
+      image: `${siteUrl}/opengraph-image.png`,
+      knowsAbout: ["Business systems", "CRM systems", "Operations software", "Web development", "Cyber security", "Brand experience"],
+    },
+    {
+      "@type": "WebSite",
+      "@id": `${siteUrl}/#website`,
+      url: siteUrl,
+      name: siteName,
+      description: siteDescription,
+      publisher: { "@id": `${siteUrl}/#organization` },
+      inLanguage: "en",
+    },
+    {
+      "@type": "WebPage",
+      "@id": `${siteUrl}/#webpage`,
+      url: siteUrl,
+      name: siteTitle,
+      isPartOf: { "@id": `${siteUrl}/#website` },
+      about: { "@id": `${siteUrl}/#organization` },
+      primaryImageOfPage: `${siteUrl}/opengraph-image.png`,
+      inLanguage: "en",
+    },
+  ],
+};
+
 export default function Home() {
   return (
     <RevealRoot>
       <ComingSoon />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }} />
       <div className="absolute inset-y-0 left-1/2 -z-20 w-screen -translate-x-1/2 bg-ambient" aria-hidden="true" />
       <a href="#main" className="fixed left-5 top-2.5 z-20 -translate-y-[150%] bg-ink p-3 focus:translate-y-0">Skip to content</a>
       <header className="absolute left-[5.4%] right-[4.5%] top-[calc(3.75*var(--u))] z-[3] max-[900px]:fixed flex items-center justify-between text-ink [--rise:-20px] motion-safe:animate-intro-rise max-[900px]:left-[5%] max-[900px]:right-[5%] max-[900px]:top-[22px]">
