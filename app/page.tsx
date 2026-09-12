@@ -5,6 +5,7 @@ import { ArrowUpRight, CodeXml } from "lucide-react";
 import heroPhoto from "@/public/design/hero-photo.webp";
 import laptopPhoto from "@/public/design/laptop-photo.webp";
 import dashboardShot from "@/public/design/dashboard.webp";
+import { ComingSoon } from "@/components/home/coming-soon";
 import { ContactForm } from "@/components/home/contact-form";
 import { FooterLogo } from "@/components/home/footer-logo";
 import { HeaderLogo } from "@/components/home/header-logo";
@@ -85,6 +86,7 @@ function IndustryCard({ variant, span, href, children }: { variant: string; span
 export default function Home() {
   return (
     <RevealRoot>
+      <ComingSoon />
       <div className="absolute inset-y-0 left-1/2 -z-20 w-screen -translate-x-1/2 bg-ambient" aria-hidden="true" />
       <a href="#main" className="fixed left-5 top-2.5 z-20 -translate-y-[150%] bg-ink p-3 focus:translate-y-0">Skip to content</a>
       <header className="absolute left-[5.4%] right-[4.5%] top-[calc(3.75*var(--u))] z-[3] max-[900px]:fixed flex items-center justify-between text-ink [--rise:-20px] motion-safe:animate-intro-rise max-[900px]:left-[5%] max-[900px]:right-[5%] max-[900px]:top-[22px]">

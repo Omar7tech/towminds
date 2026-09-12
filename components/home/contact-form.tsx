@@ -1,16 +1,13 @@
 "use client";
 
 import { ArrowRight } from "lucide-react";
-import { contact } from "@/lib/site";
 
 export function ContactForm() {
   return (
     <form onSubmit={(event) => {
       event.preventDefault();
-      const email = new FormData(event.currentTarget).get("email");
-      // mailto: link, not an internal route.
-      // eslint-disable-next-line @next/next/no-location-assign-relative-destination
-      window.location.href = `${contact}?subject=Let%27s%20talk&body=${encodeURIComponent(`Please reach out to me at ${email}.`)}`;
+      // Nothing is wired up yet, so the branded panel answers instead of opening a mail client.
+      window.dispatchEvent(new Event("coming-soon"));
     }}>
       <label className="block text-[calc(2.04*var(--u))] leading-[1.2] max-[900px]:text-[17px]" htmlFor="contact-email">Leave your email our team will<br />reach out with the next step.</label>
       <div className="mt-[calc(1.6*var(--u))] flex h-[calc(3.45*var(--u))] w-[calc(27.6*var(--u))] overflow-hidden rounded-full bg-[#ffffff70] max-[900px]:mt-[15px] max-[900px]:h-[42px] max-[900px]:w-full max-[900px]:max-w-[340px]">
