@@ -1,5 +1,5 @@
 export const navigation = [["COMPANY", "company"], ["INDUSTRIES", "industries"], ["SERVICES", "services"]] as const;
-export const contactEmail = "info@wearetwominds.com";
+export const contactEmail = "info@twomindsengine.com";
 export const contact = `mailto:${contactEmail}`;
 
 export const siteUrl = "https://twomindsengine.com";
